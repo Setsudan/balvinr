@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'auth',
+})
 import { onMounted } from 'vue'
 
 const user = useUserStore().user
@@ -46,12 +49,10 @@ header {
   grid-template-rows: repeat(12, 1fr);
 
   .header-overlay {
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.5) 50%,
-      rgba(0, 0, 0, 0) 100%
-    );
+    background: linear-gradient(0deg,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0) 100%);
     width: 100%;
     height: 100%;
     z-index: 1;

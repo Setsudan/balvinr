@@ -1,10 +1,11 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  const userStore = useUserStore().user
   if (
-    userStore?.uid === null ||
-    useAuth().user === null ||
-    useAuth().user === undefined
+    useAuth().user.value === null ||
+    useAuth().user.value === undefined
   ) {
     return navigateTo('/auth/login')
+  } else {
+    console.log('user is logged in')
+    console.log(useAuth().user.value)
   }
 })

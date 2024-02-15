@@ -29,4 +29,6 @@ export default function useStorage() {
         const storageRef = fbref(storage, `images/${file.name}`);
         await uploadBytes(storageRef, file);
     }
+
+    return { addProfilePicture, getProfilePicture, uploadImage };
 }

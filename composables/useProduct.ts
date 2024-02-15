@@ -45,15 +45,6 @@ export default function useProduct() {
         return docRef.id;
     }
 
-    // store image in firebase storage and get the url
-    const updateProductImage = async (id: string, image: File) => {
-        // store image in firebase storage and get the url
-        const storageRef = ref(storage, `products/${id}`);
-        const snapshot = await uploadBytes(storageRef, image);
-        const downloadURL = await getDownloadURL(snapshot.ref);
-        return downloadURL;
-    }
-
     const updateProduct = async (id: string, product: IProduct) => {
         const docRef = doc(db, "products", id);
         await updateDoc(docRef, { ...product });

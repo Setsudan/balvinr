@@ -32,9 +32,11 @@ const isCreating = ref(false);
 const onChnageFile = async (e: Event) => {
     const file = (e.target as HTMLInputElement)?.files?.[0];
     if (file) {
+        file.name = 'product/' + file.name;
         try {
             // Get the download URL of the uploaded image
-            const imageUrl = await useProductr().updateProductImage(file);
+            await useStorage().uploadImage(file);
+            const imageUrl = await useStorage().getImageUrl(file.name);
 
             // Set the image URL to the newProduct object
             newProduct.value.image = imageUrl;
@@ -43,7 +45,6 @@ const onChnageFile = async (e: Event) => {
         }
     }
 };
-
 
 const handleCreate = async () => {
     // Create the product

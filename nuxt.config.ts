@@ -14,4 +14,5 @@ export default defineNuxtConfig({
       { code: "fr", iso: "fr-FR", file: "fr.json" },
     ],
   },
+  css: ["@/assets/scss/root.scss"],
 });

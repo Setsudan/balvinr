@@ -1,4 +1,5 @@
 type IUser = {
+    id?: string;
     username: string;
     birthdate: string;
     email: string;

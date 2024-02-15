@@ -13,7 +13,9 @@ export const useUserStore = defineStore({
     },
     clearUser() {
       this.user = null;
+    },
+    isLoggedIn(): boolean {
+      return this.user !== null;
     }
   }
-
 });

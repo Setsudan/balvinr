@@ -8,6 +8,7 @@
             <input type="password" id="password" v-model="password" required>
             <button type="submit">Login</button>
         </form>
+        <NuxtLink to="/auth/register">Don't have an account? Register here</NuxtLink>
     </div>
 </template>
 

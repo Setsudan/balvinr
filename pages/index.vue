@@ -8,6 +8,11 @@ const user = ref();
 onMounted(() => {
     user.value = useAuth().user;
 });
+
+const signOut = () => {
+    useAuth().signOut();
+    navigateTo('/');
+};
 </script>
 
 <template>
@@ -16,5 +21,8 @@ onMounted(() => {
         <pre>
             {{ user }}
         </pre>
+        <button @click="signOut">
+            Sign out
+        </button>
     </div>
 </template>

@@ -1,87 +1,105 @@
-import { getAuth, type User, onAuthStateChanged, type UserCredential, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc, getFirestore, getDoc } from "firebase/firestore";
-import { getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
-import { ref as fbref } from "firebase/storage";
-import type { IUser } from "~/types/users.type";
+import {
+  getAuth,
+  type User,
+  onAuthStateChanged,
+  type UserCredential,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth'
+import { setDoc, doc, getFirestore, getDoc } from 'firebase/firestore'
+import { getDownloadURL, getStorage, uploadBytes } from 'firebase/storage'
+import { ref as fbref } from 'firebase/storage'
+import type { IUser } from '~/types/users.type'
 
 export default function useAuth() {
-  useFirebase();
-  const auth = getAuth();
-  const user = ref<User | null>(auth.currentUser);
-  const firestore = getFirestore();
+  useFirebase()
+  const auth = getAuth()
+  const user = ref<User | null>(auth.currentUser)
+  const firestore = getFirestore()
 
   onAuthStateChanged(auth, (u) => {
-    user.value = u;
-  });
+    user.value = u
+  })
 
-  const signIn = async (
-    email: string,
-    password: string,
-  ) => {
+  const signIn = async (email: string, password: string) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password,
-      );
-      return { ...userCredential };
+        password
+      )
+      return { ...userCredential }
     } catch (error: any) {
-      return error.message;
+      return error.message
     }
-  };
+  }
 
-  const register = async (user: IUser, password: string): Promise<UserCredential | Error> => {
+  const register = async (
+    user: IUser,
+    password: string
+  ): Promise<UserCredential | Error> => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, user.email, password);
-      useUserStore().setUser(userCredential.user);
-      useFirestore().createUser(user, userCredential.user.uid);
-      return userCredential;
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        user.email,
+        password
+      )
+      useUserStore().setUser(userCredential.user)
+      useFirestore().createUser(user, userCredential.user.uid)
+      return userCredential
     } catch (error) {
-      return error as Error;
+      return error as Error
     }
-  };
+  }
 
   const signOut = async () => {
-    await auth.signOut();
-  };
+    await auth.signOut()
+  }
 
   const isLoggedIn = () => {
-    return user.value !== null;
-  };
+    return user.value !== null
+  }
 
   const addProfilePicture = async (file: File) => {
-    const currentUser = auth.currentUser;
+    const currentUser = auth.currentUser
     if (currentUser) {
-      const storage = getStorage();
-      const storageRef = fbref(storage, `profile-pictures/${currentUser.uid}`);
-      await uploadBytes(storageRef, file);
+      const storage = getStorage()
+      const storageRef = fbref(storage, `profile-pictures/${currentUser.uid}`)
+      await uploadBytes(storageRef, file)
     }
   }
 
   const getProfilePicture = async (uid: string) => {
     // Check if the file exists
-    const storage = getStorage();
-    const storageRef = fbref(storage, `profile-pictures/${uid}`);
+    const storage = getStorage()
+    const storageRef = fbref(storage, `profile-pictures/${uid}`)
     try {
-      const url = await getDownloadURL(storageRef);
-      console.log(url);
-      return url;
+      const url = await getDownloadURL(storageRef)
+      console.log(url)
+      return url
     } catch (error: any) {
-      console.log(error);
-      return null;
+      console.log(error)
+      return null
     }
   }
 
   const getUserNameById = async (uid: string) => {
-    const userRef = doc(firestore, "users", uid);
-    const userSnap = await getDoc(userRef);
+    const userRef = doc(firestore, 'users', uid)
+    const userSnap = await getDoc(userRef)
     if (userSnap.exists()) {
-      return userSnap.data().username;
+      return userSnap.data().username
     } else {
-      return null;
+      return null
     }
   }
 
-
-  return { user, register, signIn, signOut, isLoggedIn, addProfilePicture, getProfilePicture };
+  return {
+    user,
+    register,
+    signIn,
+    signOut,
+    isLoggedIn,
+    addProfilePicture,
+    getProfilePicture,
+  }
 }

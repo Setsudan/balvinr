@@ -1,33 +1,38 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue'
 
-const products = ref();
-const loadedProducts = ref(25);
+const products = ref()
+const loadedProducts = ref(25)
 
 onMounted(async () => {
-    const response = await useProduct().getProducts();
-    products.value = response.slice(0, loadedProducts.value);
-});
+  const response = await useProduct().getProducts()
+  products.value = response.slice(0, loadedProducts.value)
+})
 
-const loadMore = () => {
-    loadedProducts.value += 25;
-};
+function loadMore() {
+  loadedProducts.value += 25
+}
 
 watchEffect(() => {
-    console.log(products.value);
-});
+  console.log(products.value)
+})
 </script>
+
 <template>
-    <section>
-        <ProductCard v-for="product in products" :key="product.id" :product="product" />
-        <button @click="loadMore">Load More</button>
-    </section>
+  <section>
+    <ProductCard
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+    />
+    <button @click="loadMore">Load More</button>
+  </section>
 </template>
 
 <style lang="scss" scoped>
 section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

@@ -1,4 +1,4 @@
 <template>
-    <slot />
-    <footer></footer>
+  <slot />
+  <footer />
 </template>

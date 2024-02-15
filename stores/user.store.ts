@@ -1,21 +1,21 @@
-import type { User } from 'firebase/auth';
+import type { User } from 'firebase/auth'
 
 0
 export const useUserStore = defineStore({
   id: 'user',
   persist: true,
   state: () => ({
-    user: null as User | null
+    user: null as User | null,
   }),
   actions: {
     setUser(userData: User | null) {
-      this.user = userData;
+      this.user = userData
     },
     clearUser() {
-      this.user = null;
+      this.user = null
     },
     isLoggedIn(): boolean {
-      return this.user !== null;
-    }
-  }
-});
+      return this.user !== null
+    },
+  },
+})

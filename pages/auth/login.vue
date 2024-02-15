@@ -1,27 +1,27 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-const { signIn } = useAuth();
-const email = ref("");
-const password = ref("");
-const error = ref("");
+import { ref } from 'vue'
+const { signIn } = useAuth()
+const email = ref('')
+const password = ref('')
+const error = ref('')
 
 const processLogin = () => {
   if (email.value.length > 0 && password.value.length > 0) {
     signIn(email.value, password.value).then((res: any) => {
-      if (typeof res === "string") {
-        error.value = res;
+      if (typeof res === 'string') {
+        error.value = res
       } else {
-        useCookie("user", res.user)
-        useUserStore().setUser(res.user);
-        navigateTo("/");
+        useCookie('user', res.user)
+        useUserStore().setUser(res.user)
+        navigateTo('/')
       }
-    });
+    })
   }
-};
+}
 
 definePageMeta({
-  layout: "auth-layout"
-});
+  layout: 'auth-layout',
+})
 </script>
 <template>
   <main id="login">
@@ -45,7 +45,7 @@ definePageMeta({
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1518838439236-2b73ceb4638a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url('https://images.unsplash.com/photo-1518838439236-2b73ceb4638a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: bottom;
   position: relative;
@@ -54,7 +54,12 @@ definePageMeta({
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
     width: 100%;
     height: 100%;
     z-index: 0;
@@ -76,7 +81,6 @@ definePageMeta({
     padding: 2rem;
     border-radius: 1rem;
     background-color: rgba(255, 255, 255, 0.5);
-
 
     input {
       margin-bottom: 1rem;

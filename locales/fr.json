@@ -1,10 +1,10 @@
 {
-    "authentification": {
-        "login": "Se connecter",
-        "register": "S'inscrire",
-        "logout": "Se déconnecter",
-        "email": "Adresse email",
-        "password": "Mot de passe",
-        "password_confirmation": "Confirmer votre mot de passe"
-    }
+  "authentification": {
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "logout": "Se déconnecter",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "password_confirmation": "Confirmer votre mot de passe"
+  }
 }

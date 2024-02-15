@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prettierrc": "prettier --write ."
+    "prettierrc": "prettier --write .",
+    "prettier:check": "prettier --check ."
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",

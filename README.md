@@ -50,3 +50,11 @@ bun run dev
 - As a seller I can create a product
 - I can add items to my cart
 - I can see the total to pay
+
+## Participants
+
+| GitHub Username | Real Name        |
+|-----------------|-----------------|
+| Setsudan/Setsudashi         | LAUNAY Ethan|
+| LFLeveneur       | LEVENEUR Louis     |
+| Ouallet-Sandie      | Ouallet Sandie     |

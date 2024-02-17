@@ -1,39 +1,44 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: 'auth',
-})
 import { onMounted } from 'vue'
+
+definePageMeta({
+	middleware: 'auth',
+})
 
 const user = useUserStore().user
 const config = useRuntimeConfig()
 
 onMounted(() => {
-  if (!user || !useUserStore().isLoggedIn) navigateTo('/auth/login')
+	if (!user || !useUserStore().isLoggedIn)
+		navigateTo('/auth/login')
 
-  console.log({
-    apiKey: config.apiKey,
-    authDomain: config.authDomain,
-    projectId: config.projectId,
-    storageBucket: config.storageBucket,
-    messagingSenderId: config.messagingSenderId,
-    appId: config.appId,
-    measurementId: config.measurementId,
-  })
+	console.log({
+		apiKey: config.apiKey,
+		authDomain: config.authDomain,
+		projectId: config.projectId,
+		storageBucket: config.storageBucket,
+		messagingSenderId: config.messagingSenderId,
+		appId: config.appId,
+		measurementId: config.measurementId,
+	})
 })
 </script>
 
 <template>
-  <header>
-    <div class="header-overlay" />
-    <h2>StoreFire</h2>
-    <h3>Find your new favorite store</h3>
-  </header>
-  <main>
-    <section>
-      <h2>Stores</h2>
-      <ProductsList />
-    </section>
-  </main>
+	<header>
+		<div class="header-overlay" />
+		<h2>StoreFire</h2>
+		<h3>Find your new favorite store</h3>
+	</header>
+	<main>
+		<section id="products">
+			<h2>Stores</h2>
+			<ProductsList />
+		</section>
+	</main>
+	<DebugInfo
+		message="Cette page affiche tout les produits mais je n'ai pas vraiment fini le bouton 'Load More' - Launay Ethan"
+	/>
 </template>
 
 <style lang="scss" scoped>
@@ -49,10 +54,12 @@ header {
   grid-template-rows: repeat(12, 1fr);
 
   .header-overlay {
-    background: linear-gradient(0deg,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.5) 50%,
-        rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
     width: 100%;
     height: 100%;
     z-index: 1;

@@ -32,15 +32,17 @@ const createProduct = async () => {
   }
   const productId = await useFirestore().createProduct(product.value)
   if (image.value) {
-    await useFirestore().addImageToProduct(productId, image.value)
+    await useStorage().addImageToProduct(productId, image.value)
   }
-
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000)
+  })
   navigateTo(`/products/${productId}`)
 }
 </script>
 
 <template>
-  <div>
+  <main>
     <h1>Create Product</h1>
     <form @submit.prevent="createProduct">
       <div>
@@ -61,5 +63,46 @@ const createProduct = async () => {
       </div>
       <button type="submit">Create</button>
     </form>
-  </div>
+  </main>
 </template>
+
+<style lang="scss" scoped>
+main {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+</style>

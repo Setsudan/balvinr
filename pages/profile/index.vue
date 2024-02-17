@@ -139,6 +139,9 @@ const getPictures = async () => {
     <button @click="editMode = !editMode">
       {{ editMode ? 'Save' : 'Edit' }}
     </button>
+    <DebugInfo
+      message="Le profile ne s'affiche pas parce que l'utilisateur n'a pas de photo de profile. Je n'ai pas le temps de finir l'app entièrement - Launay Ethan"
+    />
   </main>
 </template>
 

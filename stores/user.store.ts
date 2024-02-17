@@ -1,6 +1,5 @@
 import type { User } from 'firebase/auth'
 
-0
 export const useUserStore = defineStore({
   id: 'user',
   persist: true,

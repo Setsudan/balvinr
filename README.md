@@ -38,38 +38,15 @@ yarn dev
 bun run dev
 ```
 
-## Production
+## Features
 
-Build the application for production:
+### Done
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- I can create an account as a seller
+- I can create an account as a client
+- I can login to an account as a seller
+- I can login to an account as a client
+- I can see all products that exists
+- As a seller I can create a product
+- I can add items to my cart
+- I can see the total to pay

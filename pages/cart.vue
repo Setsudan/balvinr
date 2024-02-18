@@ -16,10 +16,10 @@ onMounted(() => {
 
 <template>
   <main>
-    <h1>Cart</h1>
+    <h1 class="text-2xl text-center m-6">Stores</h1>
     <div v-if="loading">Loading...</div>
     <div v-else>
-      <div v-if="items.length === 0">No items in cart</div>
+      <div v-if="items.length === 0" class="mb-4 text-center">No items in cart</div>
       <div v-else>
         <div v-for="item in items" :key="item.id">
           <div class="product">
@@ -34,7 +34,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <div>Total: {{ useCart().totalPrice }} €</div>
+    <div class="text-center font-bold m-6">Total: {{ useCart().totalPrice }} €</div>
   </main>
 </template>
 

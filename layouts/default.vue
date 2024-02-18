@@ -44,7 +44,7 @@ onMounted(() => {
 		<NuxtLink to="/cart" class="cart">
 			Cart
 			<div class="num-item">
-				<span>{{ cartItemsNums }}</span>
+				<span v-if="cartItemsNums > 0">{{ cartItemsNums }}</span>
 			</div>
 		</NuxtLink>
 		<button @click="handleSignOut">
@@ -89,7 +89,6 @@ nav {
     position: absolute;
     top: -0.5rem;
     right: -1.5rem;
-    background-color: #000;
     color: white;
     border-radius: 50%;
     width: 1.5rem;

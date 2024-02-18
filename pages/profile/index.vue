@@ -71,12 +71,12 @@ const getPictures = async () => {
 
 <template>
   <main id="profile">
-    <h1>My Profile</h1>
+    <h1 class="text-2xl text-center m-6">Stores</h1>
 
-    <section v-if="loading">
+    <section v-if="loading" class="mb-4">
       <p>Loading...</p>
     </section>
-    <section v-else>
+    <section v-else class="mb-4">
       <main v-if="editMode">
         <div>
           <label for="profilePicture">Profile Picture</label>
@@ -136,7 +136,7 @@ const getPictures = async () => {
       </main>
     </section>
 
-    <button @click="editMode = !editMode">
+    <button @click="editMode = !editMode" class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">
       {{ editMode ? 'Save' : 'Edit' }}
     </button>
     <DebugInfo

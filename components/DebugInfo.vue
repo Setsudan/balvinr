@@ -15,11 +15,9 @@
 
 
 <template>
-
 	<div class="debug-info">
 		{{ message }}
 	</div>
-	
 </template>
 
 

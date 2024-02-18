@@ -12,6 +12,7 @@
 
   const password = ref('')
   const confirmPassword = ref('')
+
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -20,6 +21,7 @@
   const registerUser = (e: Event) => {
     // prevent refresh
     e.preventDefault()
+    
     if (
       passwordRegex.test(password.value) &&
       emailRegex.test(user.value.email) &&

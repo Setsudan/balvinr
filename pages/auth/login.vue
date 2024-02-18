@@ -10,6 +10,7 @@
   const processLogin = () => {
     if (email.value.length > 0 && password.value.length > 0) {
       signIn(email.value, password.value).then((res: any) => {
+
         if (typeof res === 'string') {
           error.value = res
         } else {
@@ -17,6 +18,7 @@
           useUserStore().setUser(res.user)
           navigateTo('/')
         }
+        
       })
     }
   }
@@ -121,7 +123,7 @@
           background-color: #333;
         }
       }
-      
+
       .divider {
         margin: 1rem 0;
         width: 20rem;

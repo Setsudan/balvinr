@@ -10,6 +10,7 @@
   const config = useRuntimeConfig()
 
   onMounted(() => {
+    
     if (!user || !useUserStore().isLoggedIn)
       navigateTo('/auth/login')
 

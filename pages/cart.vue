@@ -20,8 +20,8 @@
 
 
 <template>
-
   <main>
+
     <h1 class="text-2xl text-center m-6">Stores</h1>
 
     <div v-if="loading">Loading...</div>
@@ -45,8 +45,8 @@
     </div>
 
     <div class="text-center font-bold m-6">Total: {{ useCart().totalPrice }} €</div>
+    
   </main>
-
 </template>
 
 

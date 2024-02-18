@@ -4,6 +4,7 @@
   import type { IUser } from '~/types/users.type'
 
   const editMode = ref(false)
+
   const user = ref<IUser>({
     id: '',
     username: '',
@@ -14,6 +15,7 @@
     bannerPicture: '',
     createdAt: '',
   })
+
   const profilePicture = ref<File>()
   const banner = ref<File>()
   const loading = ref(true)
@@ -36,7 +38,6 @@
   })
 
   const editUser = async () => {
-
     if (profilePicture.value) {
       useFirestore().addProfilePicture(user.value.id ?? '', profilePicture.value)
     }
@@ -80,8 +81,8 @@
 
 
 <template>
-
   <main id="profile">
+
     <h1 class="text-2xl text-center m-6">Stores</h1>
 
     <section v-if="loading" class="mb-4">
@@ -170,7 +171,6 @@
     />
     
   </main>
-
 </template>
 
 
@@ -216,7 +216,7 @@
 
     }
   }
-  
+
   // button {
       //   padding: 0.5rem 1rem;
       //   border: none;

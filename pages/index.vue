@@ -32,7 +32,7 @@ onMounted(() => {
 	</header>
 	<main>
 		<section id="products">
-			<h2>Stores</h2>
+			<h2 class="text-2xl text-center m-6">Stores</h2>
 			<ProductsList />
 		</section>
 	</main>

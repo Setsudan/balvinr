@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@pinia-plugin-persistedstate/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@pinia-plugin-persistedstate/nuxt', '@nuxtjs/tailwindcss'],
   i18n: {
     defaultLocale: 'en',
     langDir: 'locales/',

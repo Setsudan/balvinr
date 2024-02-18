@@ -32,7 +32,7 @@ watchEffect(() => {
 			:key="product.id"
 			:product="product"
 		/>
-		<button @click="loadMore">
+		<button @click="loadMore" class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">
 			Load More
 		</button>
 	</section>
@@ -40,7 +40,6 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 section {
-  margin-top: 5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

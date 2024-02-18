@@ -10,7 +10,7 @@
   const config = useRuntimeConfig()
 
   onMounted(() => {
-    
+
     if (!user || !useUserStore().isLoggedIn)
       navigateTo('/auth/login')
 
@@ -46,7 +46,7 @@
 	</main>
 
 	<DebugInfo
-		message="Cette page affiche tout les produits mais je n'ai pas vraiment fini le bouton 'Load More' - Launay Ethan"
+		message="Cette page affiche tous les produits mais je n'ai pas vraiment fini le bouton 'Load More' - Launay Ethan"
 	/>
 
 </template>

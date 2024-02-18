@@ -29,7 +29,7 @@
 
 
 <template>
-	<nav>
+	<nav class="py-3 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-32">
 
 		<NuxtLink to="/">
 			Home
@@ -80,7 +80,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    // padding: 1rem 2rem;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     z-index: 100;

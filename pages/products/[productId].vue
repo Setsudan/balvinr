@@ -10,7 +10,7 @@
       <div class="product-content">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <span>{{ product.price }}</span>
+        <span>{{ product.price }}€</span>
         <button @click="addToCart(product)" class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">Add to cart</button>
       </div>
 

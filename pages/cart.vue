@@ -14,7 +14,6 @@
       loading.value = false
     })
   })
-
 </script>
 
 
@@ -32,13 +31,14 @@
 
         <div v-for="item in items" :key="item.id">
           <div class="product">
-            <img :src="item.image" alt="product image" />
-            <div class="product-content">
-              <h2>{{ item.title }}</h2>
+            <!-- <img :src="item.image" :alt="item.title"/> -->
+            <div class="product-content ml-10">
+              <h2 class="font-bold">{{ item.title }}</h2>
               <p>{{ item.description }}</p>
-              <p>{{ item.price }}</p>
+              <p>{{ item.price }}€</p>
             </div>
           </div>
+          <div class="divider my-2 mx-5"></div>
         </div>
 
       </div>
@@ -100,5 +100,12 @@
       margin-top: 2rem;
     }
   }
+
+  .divider {
+        width: 20rem;
+        height: 1px;
+        background-color: #000;
+      }
+      
 
 </style>

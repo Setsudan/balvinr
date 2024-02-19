@@ -13,7 +13,7 @@
 
 
 <template>
-	<main>
+	<main class="pt-10">
 		<h1 class="text-2xl text-center m-6">My Products</h1>
 		<ProductsList :products="products" />
 	</main>

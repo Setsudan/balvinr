@@ -39,6 +39,10 @@
     }
   }
 
+  definePageMeta({
+    layout: 'auth-layout',
+  })
+
 </script>
 
 

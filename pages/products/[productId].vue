@@ -11,8 +11,8 @@
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
         <span>{{ product.price }}</span>
-        <button @click="addToCart(product)" class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">Add to
-          cart</button>
+        <button v-if="role === 'client'" @click="addToCart(product)"
+          class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">Add to cart</button>
       </div>
 
     </div>
@@ -32,6 +32,13 @@ const route = useRoute()
 const productId = route.params.productId
 const product = ref()
 const imageUrl = ref<string | null>('')
+const userStore = useUserStore().user
+const role = ref('')
+
+const getUserRole = async () => {
+  const user = await useFirestore().getUser(userStore?.uid as string)
+  role.value = user.role
+}
 
 onMounted(async () => {
   const response = await useProduct().getProduct(productId as string)
@@ -49,6 +56,10 @@ const addToCart = async (product: IProduct) => {
 
   useCart().addItem(product)
 }
+
+onMounted(() => {
+  getUserRole()
+})
 
 </script>
 

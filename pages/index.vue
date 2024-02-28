@@ -11,9 +11,9 @@ const config = useRuntimeConfig()
 
 onMounted(() => {
 
-  if (!user || !useUserStore().isLoggedIn)
+  if (!user || !useUserStore().isLoggedIn) {
     navigateTo('/auth/login')
-
+  }
 })
 
 </script>

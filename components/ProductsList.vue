@@ -1,30 +1,26 @@
 <script setup lang="ts">
 
-	import { onMounted, ref, watchEffect } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 
-	defineProps({
-		productList: {
-			type: Array,
-			default: null,
-			required: false,
-		},
-	})
+defineProps({
+	productList: {
+		type: Array,
+		default: null,
+		required: false,
+	},
+})
 
-	const products = ref()
-	const loadedProducts = ref(25)
+const products = ref()
+const loadedProducts = ref(25)
 
-	onMounted(async () => {
-		const response = await useProduct().getProducts()
-		products.value = response.slice(0, loadedProducts.value)
-	})
+onMounted(async () => {
+	const response = await useProduct().getProducts()
+	products.value = response.slice(0, loadedProducts.value)
+})
 
-	function loadMore() {
-		loadedProducts.value += 25
-	}
-
-	watchEffect(() => {
-		console.log(products.value)
-	})
+function loadMore() {
+	loadedProducts.value += 25
+}
 
 </script>
 
@@ -34,13 +30,9 @@
 	<section>
 
 		<div class="container mx-auto my-8 flex items-center justify-center">
-    		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-12">
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-12">
 
-				<ProductCard
-					v-for="product in productList ? productList : products"
-					:key="product.id"
-					:product="product"
-				/>
+				<ProductCard v-for="product in productList ? productList : products" :key="product.id" :product="product" />
 
 				<button @click="loadMore" class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">
 					Load More

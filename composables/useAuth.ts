@@ -75,11 +75,9 @@ export default function useAuth() {
     const storageRef = fbref(storage, `profile-pictures/${uid}`)
     try {
       const url = await getDownloadURL(storageRef)
-      console.log(url)
       return url
     } catch (error: any) {
-      console.log(error)
-      return null
+       return null
     }
   }
 

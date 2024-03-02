@@ -103,7 +103,6 @@ export default function useFirestore() {
     if (docSnap.exists()) {
       return docSnap.data() as IProduct
     } else {
-      console.log('No such document!')
       return {} as IProduct
     }
   }

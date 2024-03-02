@@ -10,8 +10,9 @@
       <div class="product-content">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <span>{{ product.price }}€</span>
-        <button @click="addToCart(product)" class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">Add to cart</button>
+        <span>{{ product.price }} €</span>
+        <button @click="addToCart(product)" class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">Add to
+          cart</button>
       </div>
 
     </div>
@@ -25,31 +26,29 @@
 
 <script setup lang="ts">
 
-  import { ref, onMounted } from 'vue'
-  import type { IProduct } from '~/types/product.type'
-  const route = useRoute()
-  const productId = route.params.productId
-  const product = ref()
-  const imageUrl = ref<string | null>('')
+import { ref, onMounted } from 'vue'
+import type { IProduct } from '~/types/product.type'
+const route = useRoute()
+const productId = route.params.productId
+const product = ref()
+const imageUrl = ref<string | null>('')
 
-  onMounted(async () => {
-    const response = await useProduct().getProduct(productId as string)
-    product.value = response
+onMounted(async () => {
+  const response = await useProduct().getProduct(productId as string)
+  product.value = response
 
-    console.log('res', response)
 
-    if (response) {
-      const productImage = await useStorage().getProductImage(productId as string)
-      imageUrl.value = productImage
-    }
-  })
-
-  const addToCart = async (product: IProduct) => {
-    const item = await useProduct().getProduct(productId as string)
-
-    console.log('item', item)
-    useCart().addItem(product)
+  if (response) {
+    const productImage = await useStorage().getProductImage(productId as string)
+    imageUrl.value = productImage
   }
+})
+
+const addToCart = async (product: IProduct) => {
+  const item = await useProduct().getProduct(productId as string)
+
+  useCart().addItem(product)
+}
 
 </script>
 
@@ -57,57 +56,55 @@
 
 
 <style lang="scss" scoped>
+main {
+  margin-top: 5rem;
+}
 
-  main {
-    margin-top: 5rem;
+.product {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+
+  img {
+    width: auto;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 1rem;
   }
 
-  .product {
+  .product-content {
     display: flex;
-    padding: 1rem;
+    flex-direction: column;
     gap: 1rem;
-    background-color: #f5f5f5;
-    border-radius: 5px;
 
-    img {
-      width: auto;
-      height: 15rem;
-      object-fit: cover;
-      border-radius: 1rem;
+    h2 {
+      font-size: 1.5rem;
     }
 
-    .product-content {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-
-      span {
-        font-size: 1.5rem;
-      }
-
+    p {
+      font-size: 1rem;
     }
+
+    span {
+      font-size: 1.5rem;
+    }
+
   }
+}
 
-  // button {
-      //   padding: 0.5rem 1rem;
-      //   border: none;
-      //   border-radius: 0.5rem;
-      //   background-color: #000;
-      //   color: #fff;
-      //   cursor: pointer;
-      //   transition: 0.3s;
+// button {
+//   padding: 0.5rem 1rem;
+//   border: none;
+//   border-radius: 0.5rem;
+//   background-color: #000;
+//   color: #fff;
+//   cursor: pointer;
+//   transition: 0.3s;
 
-      //   &:hover {
-      //     background-color: #333;
-      //   }
-      // }
-      
+//   &:hover {
+//     background-color: #333;
+//   }
+// }
 </style>

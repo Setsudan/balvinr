@@ -7,7 +7,6 @@ const loading = ref(true)
 const getItems = async () => {
   const products = useCart().items
   items.value = products
-  console.log(products)
 
   // Fetch the image for each product
   for (const product of products) {

@@ -16,8 +16,18 @@ const getItems = async () => {
   }
 }
 
+const restoreCart = async () => {
+  await useCart().restoreCart()
+  await getItems()
+}
+
 onMounted(async () => {
   await getItems()
+
+  if (items.value.length === 0) {
+    await restoreCart()
+  }
+
   loading.value = false
 })
 

@@ -60,9 +60,7 @@ onMounted(async () => {
 })
 
 const addToCart = async (product: IProduct) => {
-  const item = await useProduct().getProduct(productId as string)
-
-  useCart().addItem(product)
+  useCart().addItem({ ...product, id: productId as string })
 }
 
 const deleteProduct = async () => {

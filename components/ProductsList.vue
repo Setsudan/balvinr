@@ -30,7 +30,7 @@ function loadMore() {
 	<section>
 
 		<div class="container mx-auto my-8 flex items-center justify-center">
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-12">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
 
 				<ProductCard v-for="product in productList ? productList : products" :key="product.id" :product="product" />
 

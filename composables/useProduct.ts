@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getFirestore,
   setDoc,
@@ -48,9 +49,33 @@ export default function useProduct() {
     return products
   }
 
+  const deleteProduct = async (sellerId: string, productId: string) => {
+    // check if the user is the owner of the product
+    const product = await getProduct(productId)
+    if (product && product.seller !== sellerId) {
+      throw new Error('You are not the owner of this product')
+    }
+    // delete the product
+    const productRef = doc(db, 'products', productId)
+    await deleteDoc(productRef)
+  }
+
+  const editProduct = async (sellerId: string, productId: string, data: ICreateProduct) => {
+    // check if the user is the owner of the product
+    const product = await getProduct(productId)
+    if (product && product.seller !== sellerId) {
+      throw new Error('You are not the owner of this product')
+    }
+    // update the product
+    const productRef = doc(db, 'products', productId)
+    await updateDoc(productRef, data)
+  }
+
   return {
     getProduct,
     getProducts,
     getProductBySellerId,
+    deleteProduct,
+    editProduct,
   }
 }

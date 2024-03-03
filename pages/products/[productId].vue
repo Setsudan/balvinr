@@ -14,11 +14,19 @@
         <button v-if="role === 'client'" @click="addToCart(product)"
           class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">Add to cart</button>
       </div>
-
+      <!-- If product seller is equal to current user id show delete button -->
+      <button v-if="role === 'seller' && product.seller === userStore?.uid" @click="deleteProduct"
+        class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">
+        Delete
+      </button>
+      <!-- If product seller is equal to current user id show edit button to edit the product -->
+      <nuxt-link v-if="role === 'seller' && product.seller === userStore?.uid" :to="`/products/edit/${productId}`"
+        class="bg-white hover:bg-gray-100 font-medium py-2 px-6 rounded-lg">
+        Edit
+      </nuxt-link>
     </div>
 
     <div v-else>Loading...</div>
-
   </main>
 </template>
 
@@ -34,6 +42,7 @@ const product = ref()
 const imageUrl = ref<string | null>('')
 const userStore = useUserStore().user
 const role = ref('')
+const currentUser = useUserStore().user;
 
 const getUserRole = async () => {
   const user = await useFirestore().getUser(userStore?.uid as string)
@@ -44,7 +53,6 @@ onMounted(async () => {
   const response = await useProduct().getProduct(productId as string)
   product.value = response
 
-
   if (response) {
     const productImage = await useStorage().getProductImage(productId as string)
     imageUrl.value = productImage
@@ -52,9 +60,12 @@ onMounted(async () => {
 })
 
 const addToCart = async (product: IProduct) => {
-  const item = await useProduct().getProduct(productId as string)
+  useCart().addItem({ ...product, id: productId as string })
+}
 
-  useCart().addItem(product)
+const deleteProduct = async () => {
+  await useProduct().deleteProduct(currentUser?.uid as string, productId as string)
+  navigateTo('/')
 }
 
 onMounted(() => {
@@ -104,18 +115,4 @@ main {
 
   }
 }
-
-// button {
-//   padding: 0.5rem 1rem;
-//   border: none;
-//   border-radius: 0.5rem;
-//   background-color: #000;
-//   color: #fff;
-//   cursor: pointer;
-//   transition: 0.3s;
-
-//   &:hover {
-//     background-color: #333;
-//   }
-// }
 </style>

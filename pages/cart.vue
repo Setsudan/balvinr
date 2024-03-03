@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-  import type { IProduct } from '~/types/product.type'
+import type { IProduct } from '~/types/product.type'
 
   const items = ref<IProduct[]>([])
   const loading = ref(true)
@@ -14,6 +14,7 @@
       loading.value = false
     })
   })
+
 </script>
 
 
@@ -31,9 +32,9 @@
 
         <div v-for="item in items" :key="item.id">
           <div class="product">
-            <!-- <img :src="item.image" :alt="item.title"/> -->
-            <div class="product-content ml-10">
-              <h2 class="font-bold">{{ item.title }}</h2>
+            <img :src="item.image" alt="product image" />
+            <div class="product-content">
+              <h2>{{ item.title }}</h2>
               <p>{{ item.description }}</p>
               <p>{{ item.price }}€</p>
             </div>
@@ -45,67 +46,59 @@
     </div>
 
     <div class="text-center font-bold m-6">Total: {{ useCart().totalPrice }} €</div>
-    
+
   </main>
 </template>
 
 
 
 <style lang="scss" scoped>
+main {
+  margin-top: 5rem;
 
-  main {
-    margin-top: 5rem;
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
+  .product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    img {
+      width: 100px;
+      height: 100px;
+      margin-right: 1rem;
     }
 
-    .product {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-
-      img {
-        width: 100px;
-        height: 100px;
-        margin-right: 1rem;
+    .product-content {
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
       }
 
-      .product-content {
-        h2 {
-          font-size: 1.2rem;
-          margin-bottom: 0.5rem;
-        }
-
-        p {
-          margin-bottom: 0.5rem;
-        }
-        
+      p {
+        margin-bottom: 0.5rem;
       }
-    }
 
-    .loading {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
     }
+  }
 
-    .empty-cart {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
+  .loading {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .empty-cart {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
 
     .total {
       font-size: 1.2rem;
       margin-top: 2rem;
     }
   }
-
-  .divider {
-        width: 20rem;
-        height: 1px;
-        background-color: #000;
-      }
-      
 
 </style>

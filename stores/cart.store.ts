@@ -51,7 +51,8 @@ export const useCart = defineStore('cart', {
      */
     clearCart(): void {
       this.items = [];
-      this.persistCart(); // Persist the cart after clearing it
+      // Clear the cart in the cookie
+      document.cookie = `cart=[]; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
     },
 
     /**
